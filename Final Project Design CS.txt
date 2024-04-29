@@ -1,0 +1,30 @@
+﻿Design Document
+Adam Jackson
+ Erinstagram!
+Data:
+    • Load image
+    • display image 
+    • Edit image  
+    • Crop  
+    • Dim   
+    • Brighten  
+    • Rotate 90  
+    • Save image 
+
+Purpose:
+	The software should include a menu that allows users to select options such as loading a new image from a specified file, displaying the current image, modifying the current image, and closing the program. Suppose the user chooses to change the current image. In that case, another menu should appear, with options such as cropping to a specific portion of the original image, darkening or brightening the image, and, for extra credit, rotating the image 90 degrees. After selecting an editing option, the revised image should be displayed, with the option to save it to a file if desired. When they accept to save, they should enter a filename, and then return to the first menu to continue working with the
+
+Functions:
+    • Main: The program's main function is responsible for controlling the flow of the application.
+    • Display menu: Displays the menu options for the user.
+    • Load image: Loads an image from a file into memory.
+    • Display image: Displays the currently loaded image on the screen.
+    • Edit image: Allows the user to edit the currently loaded image using various operations.
+    • Crop: Allows the user to crop a specific region from the image.
+    • Dim: Diminishes the brightness of the pixels in the image.
+    • Brighten: Increases the brightness of the pixels in the image.
+    • Rotate 90: Rotate the image 90 degrees clockwise.
+    • Save image: Saves the edited image to a file.
+    • Process choice: Processes the user's choice from the menu and calls the corresponding function.
+
+
