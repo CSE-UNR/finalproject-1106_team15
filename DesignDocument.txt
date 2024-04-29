@@ -1,0 +1,84 @@
+﻿Design Document
+Ethan Araki
+Erinstagram - Final Group Project
+DATA
+Menu 1- char 
+Load new image – 2d array of int[20 x 20]
+File pointers for current image, edited image, and new image
+Menu 2 – char variables
+Crop – 2d array of double [20 x 20]
+Dim – 2d array of double [20x20]
+Brighten – 2d array of double [20x20]
+Extra: Rotate – 2d array of double [20x20]
+Save option – char
+
+USER ACTIONS
+User prompted if they want to edit current photo or load new photo. Photo is chosen and is taken to new menu. User is given options to crop, dim, brighten, maybe to rotate, and finally to exit. User inputs edits that they would like to make to their photo. User is asked if they would like to save changes made to photo. User will return to the first menu and repeat the process unless user decides to exit. Once user chooses to exit the code will end. 
+
+FUNCTIONS
+Main()
+Data: arrays for photos, photo edit options. Variables for menu options and loops.
+Functionality: Load photo from file. Display options for menu. In a loop, allow user to choose photo, allow user to make edits to the photo, allow user to choose to save the photo, allow user to edit another photo or same photo again. Once user is done editing, save photo to file. 
+
+LoadNewimage()
+Input parameters: file pointer, int image 2d array
+Returned Output: none
+Functionality: load new image into 2d array image
+
+LoadCurrentimage()
+Input parameters: file pointer, int image 2d array
+Returned Output: none
+Functionality: load current image into 2d array image
+
+Loadmenu ()
+Input parameters: int menu, int options
+Returned Output: none
+Functionality: load in menu that allows user to choose if they want to edit current photo or edit new photo.
+
+Loadmenu2()
+Input parameters: int menu2, int options2
+Returned Output: none
+Functionality: load second menu that comes up after the first that asks user if they would like to either brighten, dim, crop, or rotate the image that they have selected.
+
+Displayimage()
+Input parameters: int image 2d array, int brighten, int crop, int dim
+Returned Output: none
+Functionality: display changes to images after changes are made to it.
+
+Saveimage()
+Input parameters: int image 2d array, int brighten, int crop, int dim
+Returned Output: none
+Functionality: If user chooses to save image to file.
+
+getBrighten()
+Input parameters: int brighten, int image 2d array, char options,
+Returned Output: int brighten
+Functionality: Have user brighten image form 2d array using a loop as well as the stored values and chars. Then display newly edited image to them to ensure it is what they want. Finally prompt if they would like to save and return them to the first menu. 
+
+getDim()
+Input parameters: int dim, int image 2d array, char options
+Returned Output: int dim
+Functionality: Have user dim image similar to how they had brighten it(using the stored values and char options). Then display the newly edited image. Finally prompt if they would like to save and then return them to first menu. 
+
+getCrop()
+Input parameters: int crop, int image 2d array, 
+Returned Output: int crop
+Functionality: Have user input how much of the image they are editing that they want to crop. Crop image to the amount input and then display new image to the user. Prompt user if they would like to save. If yes save new image to file. Finally return user back to first menu. 
+
+getRotate()
+Input parameters: int rotate, int image 2d array
+Returned Output: int rotate
+Functionality: Have user input whether they would like to rotate the image to the to the left or right and then input how many times to the left or how many times to the right that the person would like to display the image. Prompt user if they would like to save the image, if yes save image to file. Finally return user to first menu.  
+
+
+
+
+
+
+
+
+
+
+ 
+
+
