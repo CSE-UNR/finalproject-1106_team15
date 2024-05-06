@@ -167,7 +167,8 @@ void dimImage(char image[][C], int row, int col, char fileName[]) {
 }
 
 void writeImageToFile(char image[][C], int row, char fileName[]) {
-    FILE *pf1 = fopen(fileName, "w");
+    
+    FILE *pf1 = fopen("image2.txt", "w");
     for (int i = 0; i < row; i++) {
         fprintf(pf1, "%s\n", image[i]);
     }
