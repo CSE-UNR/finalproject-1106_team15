@@ -118,40 +118,9 @@ void displayImage(char image[][C], int row, int col, char fileName[]) {
         }
         image[row][col] = '\0';
     }
-   		
-   		for (row = 0; row < R; row++) {
-			for (col = 0; col < C; col++) {
-				switch(image[row][col]){
-           				case '1':
-           					image[row][col] = '.';
-           					break;
-           			
-         				case '2':
-           				
-           					image[row][col] = 'o';
-           					break;
-          				case '3':
-           
-           					image[row][col] = 'O';
-						break;
-					case '4':
-         				
-         					image[row][col] = '0';
-    			   			break;
-    			   		case '0':
-         					image[row][col] = ' ';
-         					break;
-         				default:
-         					break;
-
-    			       }
-				printf("%c", image[row][col]);
-			
-			}	
-			printf("\n");	
-		
-		}	
-    
+    for (int i = 0; i < row; i++) {
+        printf("%s\n", image[i]);
+    }
     fclose(pf1);
 	printf("\n");
 }
@@ -163,9 +132,8 @@ void cropImage(char image[][C], int row, int col) {
 }
 
 void brightenImage(char image[][C], int row, int col, char fileName[]) {
-    
-    
     // Edit the text file to transform characters
+    
     for (row = 0; row < R; row++) {
         for (col = 0; col < C; col++) {
            if(image[row][col] == '.'){
@@ -202,10 +170,9 @@ void brightenImage(char image[][C], int row, int col, char fileName[]) {
 
 }
 
-//dim image
+
 void dimImage(char image[][C], int row, int col, char fileName[]) {
    
-   //loop to change each character to counterpart.
     for (row = 0; row < R; row++) {
         for (col = 0; col < C; col++) {
            if(image[row][col] == '.'){
@@ -226,7 +193,7 @@ void dimImage(char image[][C], int row, int col, char fileName[]) {
     }
     image[row][col] = '\0';
       
-    
+      
       for (row = 0; row < R; row++) {	
 	for(col = 0; col < C; col++){
         	printf("%c", image[row][col]);
@@ -239,9 +206,7 @@ void dimImage(char image[][C], int row, int col, char fileName[]) {
 
     // Write modified image content back to file
     writeImageToFile(image, row, col, fileName);
-
 }
-	
 
 void rotateImage(char image[][C], int row, int col) {
     // Placeholder code for rotating image
@@ -301,7 +266,7 @@ void writeImageToFile(char image[][C], int row, int col, char fileName[]) {
 	
 	
 	
-}
+} 
 	
 	
 	
