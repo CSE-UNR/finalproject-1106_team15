@@ -205,8 +205,57 @@ void dimImage(char image[][C], int row, int col, char fileName[]) {
     printf("\nImage dimmed.\n\n");
 
     // Write modified image content back to file
+<<<<<<< HEAD
     writeImageToFile(image, row, col, fileName);
+=======
+    writeImageToFile(image, row, fileName);
 }
+
+void writeImageToFile(char image[][C], int row, char fileName[]) {
+    
+    FILE *pf1 = fopen("image2.txt", "w");
+    for (int i = 0; i < row; i++) {
+        fprintf(pf1, "%s\n", image[i]);
+    }
+    fclose(pf1);
+}
+
+void brightenImage(char image[][C], int row, int col) {
+    // Placeholder code for brightening image
+for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            // Transform characters
+            switch (image[i][j]) {
+                case ' ':
+                    image[i][j] = '.';
+                    break;
+                case '.':
+                    image[i][j] = 'o';
+                    break;
+                case 'o':
+                    image[i][j] = 'O';
+                    break;
+                case 'O':
+                    image[i][j] = '0';
+                    break;
+                // Leave spaces unchanged
+                case ' ':
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+    //displayImage(image, row, col, fileName);
+    
+    printf("\nImage brightened.\n\n");
+
+    // Write modified image content back to file
+    writeImageToFile(image, row, fileName);
+>>>>>>> 4d3ac881a684f37058e215ebf0e9b961e3629e4c
+}
+	
 
 void rotateImage(char image[][C], int row, int col) {
     // Placeholder code for rotating image
