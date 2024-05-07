@@ -158,7 +158,16 @@ void displayImage(char image[][C], int row, int col, char fileName[]) {
 
 
 void cropImage(char image[][C], int row, int col) {
-    // Placeholder code for cropping image
+    
+    
+  
+  
+  
+  
+  
+  
+  
+  
     printf("\nImage cropped.\n\n");
 }
 
