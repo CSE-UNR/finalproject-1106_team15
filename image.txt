@@ -1,13 +1,4 @@
-    OO         OO    
-   O  O       O  O   
-   O  O       O  O   
-    OO         OO    
-                     
-          OO         
-                     
-                     
-      .       .      
-      .o     .o      
-       oOO OOo       
-         OOO         
-
+...............
+ooooooooooooooo
+OOOOOOOOOOOOOOO
+000000000000000

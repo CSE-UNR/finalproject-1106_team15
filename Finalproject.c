@@ -70,6 +70,7 @@ void displayMenu2(int choice2){
 		printf("\n");
 		printf("Choose from one of the options above: ");
 		scanf("%d", &choice2);
+
 		
 	
 	
