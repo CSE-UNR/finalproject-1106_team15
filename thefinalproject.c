@@ -135,24 +135,26 @@ void cropImage(char image[][C], int row, int col, char fileName[]) {
     printf("Enter Column for Cropping(For Example: 1 5) : ");
     scanf("%d %d", &startY, &endY);
 
-   
+    
     if (startX < 0 || startY < 0 || endX >= R || endY >= C || startX >= endX || startY >= endY) {
         printf("Invalid cropping coordinates.\n");
         return;
     }
 
-   
+    
     endX = (endX >= R) ? (R - 1) : endX;
     endY = (endY >= C) ? (C - 1) : endY;
 
     
     printf("\nImage Cropped:\n\n");
-    for (int i = startX; i <= endX; i++) {
-        for (int j = startY; j <= endY; j++) {
+    for (int i = 0; i < endX - startX + 1; i++) {
+        for (int j = 0; j < endY - startY + 1; j++) {
+            image[i][j] = image[startX + i][startY + j];
             printf("%c", image[i][j]);
         }
         printf("\n\n");
     }
+    
     writeImageToFile(image, endX - startX + 1, endY - startY + 1, fileName);
 }
 
