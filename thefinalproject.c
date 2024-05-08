@@ -13,21 +13,21 @@ void loadImage(char image[][C], int row, int col, char fileName[]);
 void displayImage(char image[][C], int row, int col, char fileName[]);
 void writeImageToFile(char image[][C], int row, int col, char fileName[]);
 
-void cropImage(char image[][C], int row, int col);
+void cropImage(char image[][C], int row, int col, char fileName[]);
 void dimImage(char image[][C], int row, int col, char fileName[]);
 void brightenImage(char image[][C], int row, int col, char fileName[]);
-void rotateImage(char image[][C], int row, int col);
+void rotateImage(char image[][C], int *row, int *col, char fileNme[]);
 
 int main() {
     int choice1, choice2;
 
-    // Display first menu choices
+
     displayMenu(&choice1, &choice2);
 
     return 0;
 }
 
-// Function for first menu choices
+
 void displayMenu(int *choice1, int *choice2) {
     int row = 0, col;
     char image[R][C];
@@ -40,23 +40,23 @@ void displayMenu(int *choice1, int *choice2) {
         printf("4. Exit\n");
         printf("\n");
         printf("Choose from one of the options above: ");
-        scanf("%d", choice1); // Update choice1 directly
+        scanf("%d", choice1); 
 
-        // Display second menu
-        if (*choice1 == 3) { // Use *choice1 to access its value
-            displayMenu2(choice2, image, row, col, fileName); // Pass fileName to displayMenu2
+        
+        if (*choice1 == 3) { 
+            displayMenu2(choice2, image, row, col, fileName); 
         } else if (*choice1 == 1) {
             loadImage(image, row, col, fileName);
         } else if (*choice1 == 2) {
             displayImage(image, row, col, fileName);
-        } else if (*choice1 != 4) { // Add condition to check if choice1 is not 4
+        } else if (*choice1 != 4) { 
             printf("Invalid Option: \n");
         }
-    } while (*choice1 != 4); // Use *choice1 to check its value
+    } while (*choice1 != 4); 
     printf("Goodbye!\n");
 }
 
-// Function for second menu choices
+
 void displayMenu2(int *choice2, char image[][C], int row, int col, char fileName[]) {
         printf("***ENTER NUMBER FOR CHOICE***\n");
         printf("1. Crop\n");
@@ -65,30 +65,30 @@ void displayMenu2(int *choice2, char image[][C], int row, int col, char fileName
         printf("4. Rotate\n");
         printf("\n");
         printf("Choose from one of the options above\n");
-        scanf("%d", choice2); // Update choice2 directly
+        scanf("%d", choice2); 
 
-        switch (*choice2) { // Use *choice2 to access its value
+        switch (*choice2) { 
             case 1:
-                cropImage(image, row, col);
+                cropImage(image, row, col, fileName);
                 break;
             case 2:
-                dimImage(image, row, col, fileName); // Pass fileName to dimImage
+                dimImage(image, row, col, fileName); 
                 break;
             case 3:
                 brightenImage(image, row, col, fileName);
                 break;
             case 4:
-                rotateImage(image, row, col);
+                rotateImage(image, &row, &col, fileName);
                 break;
             case 0:
-                return; // Exit the function to return to the main menu
+                return; 
             default:
                 printf("Invalid Option: \n");
                 break;
         }
 }
 
-// Placeholder functions for image manipulation
+
 void loadImage(char image[][C], int row, int col, char fileName[]) {
     printf("What is the name of the image file: ");
     scanf("%s", fileName);
@@ -101,7 +101,7 @@ void loadImage(char image[][C], int row, int col, char fileName[]) {
         printf("\n");
     }
 
-    // Read the image content into the image array
+   
     for (row = 0; row < R && fgets(image[row], C, pf1) != NULL; row++) {
         for (col = 0; image[row][col] != '\n' && image[row][col] != '\0'; col++) {
         }
@@ -118,63 +118,47 @@ void displayImage(char image[][C], int row, int col, char fileName[]) {
         }
         image[row][col] = '\0';
     }
-   		
-   		for (row = 0; row < R; row++) {
-			for (col = 0; col < C; col++) {
-				switch(image[row][col]){
-           				case '1':
-           					image[row][col] = '.';
-           					break;
-           			
-         				case '2':
-           				
-           					image[row][col] = 'o';
-           					break;
-          				case '3':
-           
-           					image[row][col] = 'O';
-						break;
-					case '4':
-         				
-         					image[row][col] = '0';
-    			   			break;
-    			   		case '0':
-         					image[row][col] = ' ';
-         					break;
-         				default:
-         					break;
-
-    			       }
-				printf("%c", image[row][col]);
-			
-			}	
-			printf("\n");	
-		
-		}	
-    
+    for (int i = 0; i < row; i++) {
+        printf("%s\n", image[i]);
+    }
     fclose(pf1);
 	printf("\n");
 }
 
 
-void cropImage(char image[][C], int row, int col) {
+void cropImage(char image[][C], int row, int col, char fileName[]) {
+    int startX, startY, endX, endY;
+
     
+    printf("Enter Rows for Cropping (For Example: 1 5): ");
+    scanf("%d %d", &startX, &endX);
+    printf("Enter Column for Cropping(For Example: 1 5) : ");
+    scanf("%d %d", &startY, &endY);
+
+   
+    if (startX < 0 || startY < 0 || endX >= R || endY >= C || startX >= endX || startY >= endY) {
+        printf("Invalid cropping coordinates.\n");
+        return;
+    }
+
+   
+    endX = (endX >= R) ? (R - 1) : endX;
+    endY = (endY >= C) ? (C - 1) : endY;
+
     
-  
-  
-  
-  
-  
-  
-  
-  
-    printf("\nImage cropped.\n\n");
+    printf("\nImage Cropped:\n\n");
+    for (int i = startX; i <= endX; i++) {
+        for (int j = startY; j <= endY; j++) {
+            printf("%c", image[i][j]);
+        }
+        printf("\n\n");
+    }
+    writeImageToFile(image, endX - startX + 1, endY - startY + 1, fileName);
 }
 
 void brightenImage(char image[][C], int row, int col, char fileName[]) {
     
     
-    // Edit the text file to transform characters
     for (row = 0; row < R; row++) {
         for (col = 0; col < C; col++) {
            if(image[row][col] == '.'){
@@ -206,15 +190,14 @@ void brightenImage(char image[][C], int row, int col, char fileName[]) {
     
     printf("\nImage brightened.\n\n");
 
-    // Write modified image content back to file
+    
     writeImageToFile(image, row, col, fileName);
 
 }
 
-//dim image
+
 void dimImage(char image[][C], int row, int col, char fileName[]) {
    
-   //loop to change each character to counterpart.
     for (row = 0; row < R; row++) {
         for (col = 0; col < C; col++) {
            if(image[row][col] == '.'){
@@ -235,7 +218,7 @@ void dimImage(char image[][C], int row, int col, char fileName[]) {
     }
     image[row][col] = '\0';
       
-    
+      
       for (row = 0; row < R; row++) {	
 	for(col = 0; col < C; col++){
         	printf("%c", image[row][col]);
@@ -246,16 +229,45 @@ void dimImage(char image[][C], int row, int col, char fileName[]) {
     
     printf("\nImage dimmed.\n\n");
 
-    // Write modified image content back to file
+    
     writeImageToFile(image, row, col, fileName);
-
 }
-	
 
-void rotateImage(char image[][C], int row, int col) {
-    // Placeholder code for rotating image
-    printf("\nImage rotated.\n\n");
+
+
+void rotateImage(char image[][C], int *row, int *col, char fileName[]) {
+    
+    char temp[C][R];
+
+   
+    for (int i = 0; i < *row; i++) {
+        for (int j = 0; j < *col; j++) {
+          
+            temp[j][*row - i - 1] = image[i][j];
+        }
+    }
+
+    
+    int tempRow = *row;
+    *row = *col;
+    *col = tempRow;
+
+    printf("\nImage rotated:\n\n");
+
+  
+    for (int i = 0; i < *row; i++) {
+        for (int j = 0; j < *col; j++) {
+            printf("%c", temp[i][j]);
+        }
+        printf("\n");
+    }
+
+    
+    writeImageToFile(temp, *row, *col, fileName);
 }
+
+
+
 
 void writeImageToFile(char image[][C], int row, int col, char fileName[]) {
     
@@ -310,8 +322,4 @@ void writeImageToFile(char image[][C], int row, int col, char fileName[]) {
 	
 	
 	
-}
-	
-	
-	
-	
+} 
