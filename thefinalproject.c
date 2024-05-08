@@ -116,14 +116,64 @@ void loadImage(char image[][C], int row, int col, char fileName[]) {
 
 void displayImage(char image[][C], int row, int col, char fileName[]) {
     FILE *pf1 = fopen(fileName, "r");
-    for (row = 0; row < R && fgets(image[row], C, pf1) != NULL; row++) {
+    int newlines = 0, columns = 0, firstNewline = 0, c;
+    while(c = fgetc(pf1)){
+    	if(c == EOF){
+    		break;
+    	}
+    	if(firstNewline == 0){
+    		columns++;
+	}
+	if(c == '\n'){
+		newlines++;
+		firstNewline = 1;
+	}
+    }
+    
+    
+    for (row = 0; row < newlines && fgets(image[row], columns, pf1) != NULL; row++) {
         for (col = 0; image[row][col] != '\n' && image[row][col] != '\0'; col++) {
         }
         image[row][col] = '\0';
     }
+
+   		for (row = 0; row < newlines; row++) {
+			for (col = 0; col < columns; col++) {
+				switch(image[row][col]){
+           				case '1':
+           					image[row][col] = '.';
+           					break;
+           			
+         				case '2':
+           				
+           					image[row][col] = 'o';
+           					break;
+          				case '3':
+           
+           					image[row][col] = 'O';
+						break;
+					case '4':
+         				
+         					image[row][col] = '0';
+    			   			break;
+    			   		case '0':
+         					image[row][col] = ' ';
+         					break;
+         				default:
+         					break;
+
+    			       }
+				printf("%c", image[row][col]);
+			
+			}	
+			printf("\n");	
+		
+		}	
+    
     for (int i = 0; i < row; i++) {
         printf("%s\n", image[i]);
     }
+
     fclose(pf1);
 	printf("\n");
 }
